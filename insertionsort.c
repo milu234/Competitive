@@ -1,35 +1,43 @@
-#include <stdio.h>
+#include<stdio.h>
+
+
+void insertionSort(int *,int);
+
 int main()
 {
+	int n,arr[100];
+	int i;
 
-	int data[100],n,temp,i,j;
-	printf("Enter number of terms(should be less than 100): ");
+	printf("\n\nHOW MANY NUMBERS ARE THERE : \t");
 	scanf("%d",&n);
-	printf("Enter elements: ");
+
+	printf("\n\nENTER NUMBERS ONE BY ONE ....");
 	for(i=0;i<n;i++)
 	{
-		scanf("%d",&data[i]);
+		printf("\nENTER NUMBER %d : ",i+1);
+		scanf("%d",&arr[i]);
 	}
-	for(i=1;i<n;i++)
+
+	insertionSort(arr,n);
+
+	printf("\n\nTHE SORTED ARRAY IS.... ");
+	for(i=0;i<n;i++)
 	{
-		temp = data[i];
-		j=i-1;
-		while(temp<data[j] && j>=0)
-/*To sort elements in descending order, change temp<data[j] to temp>data[j] in above line.*/
-		{
-			data[j+1] = data[j];
-			printf("%d ",data[i]);
-            printf("\n");
-			j--;
+		printf("\n %d",arr[i]);
+	}
+	return 0;
+}
 
-
-		}
-		data[j+1]=temp;
+void insertionSort(int x[], int n)
+{
+	int i,k,y;
+	for(k=1;k<n;k++)
+	{
+		y = x[k];
+		//printf("%d" , y);
+		for(i=k-1;i>=0 && y<x[i];i--)
+			x[i+1] = x[i];
+		x[i+1] = y;
 
 	}
-
-	for(i=0; i<n; i++)
-		printf("%d ",data[i]);
-		printf("\n");
-    return 0;
 }
