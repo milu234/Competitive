@@ -163,3 +163,26 @@ Advantages
 ----Overiding
 ----Data Hiding
 */
+
+
+
+/* *******************************Output****************************************** */
+/* D:\Competitive>java Inheritanceapp
+>>>>> Product Object Constructed >>>>>>
+>>>>>> Object Mobile Constructed >>>>>
+>>Data written in the Product Object>>>
+----------------Product Id : 2012----------
+Product Name : VIVO
+Product Price : 250000.rs
+Product os : null
+Product ram : 0GB
+Product memory : 0GB
+---------------------------------------------------
+>>Data written in the Product Object>>>
+----------------Product Id : 2013----------
+Product Name : MI
+Product Price : 2630000.rs
+Product os : COLOR
+Product ram : 4GB
+Product memory : 64GB
+---------------------------------------------------*/
