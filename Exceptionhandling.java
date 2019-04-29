@@ -92,10 +92,115 @@ finally
 		}
 		
 **************************************************************************************************
+
+
+
+**************************************************************************************************
+throw
+- Used to throw an exception
+- Checked Exceptions cannot be propogated using throw only
+- Followed by an instance
+- Used within a method
+- Cannot throw multiple exceptions
+- Syntax:
+		void a(){
+	throw new ArithmeticException("Demo");
+		}
+**************************************************************************************************
+
+
+
+**************************************************************************************************
+throws
+ - use to declare Exceptions
+ - Checked Exceptions can be propogated 
+ - Followed by a class
+ - Used with a method signature
+ - Can declare multiple Exceptions 
+ Syntax:
+ 		void a() throws ArithmeticException {}
+**************************************************************************************************
+
+
+
+
+
+
+**************************************************************************************************
+final 
+- Keyword
+- Applies restriction on class, method and variable.
+- final class can be inherited, method can't be ovveridden.
+**************************************************************************************************
+
+
+
+
+**************************************************************************************************
+finallly
+- block
+- used to place an important code
+- It will be executed whether theexception is handled or not 
+**************************************************************************************************
+
+
+
+
+**************************************************************************************************
+finalize
+- Method
+- Used to perform clean-up processing just before the object garbage is collected
+************************************************************************************************** 
+
 */
 
+import java.util.*;
 public class Exceptionhandling{
+
+
+//Built in Exception
+	static void add() throws ArithmeticException{
+		System.out.println("Inside add function");
+		throw new ArithmeticException("Demo");
+
+
+	}
+
+	static void avg(){
+
+		try{
+			add();
+		}catch(ArithmeticException e){
+			System.out.println("Caught");
+		}
+		try{
+			throw new ArithmeticException("Demo");
+		}catch(ArithmeticException e){
+			System.out.println("Exception Caught");
+		}
+	}
+//built an exception
+
+		static void validateInput(int number) throws InvalidInputException{
+			if(number > 100){
+				throw new InvalidInputException("Exception");
+			}
+			System.out.println("Valid Input");
+		}
+
 	public static void main(String args[]){
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number less than 100 : ");
+		int num1 = sc.nextInt();
+		try{
+			validateInput(num1);
+		}catch(InvalidInputException e){
+			System.out.println("Caught Exception - Input is greater than 100");
+		}
+
+	//Built in Exception		
+		avg();
 		String str = null;
 		try {
 			int a  = 30;
@@ -152,6 +257,54 @@ public class Exceptionhandling{
 
 		finally{
 			System.out.println("The finally block is always executed");
+		}//built in Exception
+
+
+//***********************************************************************************************************
+// User Defined Exception
+
+
+		try{
+			throw new MyException(5);
+		}catch(Exception e){
+			System.out.println(e);
 		}
+
+
 	}
 }
+
+class MyException extends Exception{
+	int a;
+	MyException(int b){
+		a=b;
+	}
+	public String toString() {
+		return("Exception Number + "+ a);
+	}
+}
+
+class InvalidInputException extends Exception{
+	InvalidInputException(String exceptionText){
+		super(exceptionText);
+	}
+}
+
+
+
+/*Output
+D:\Competitive>java Exceptionhandling
+Enter the number less than 100 :
+100
+Valid Input
+Inside add function
+Caught
+Exception Caught
+Number is not divsble by 0
+There is some format issue
+The array is out of bounds
+Dividing by zero is not allowed at first try
+Dividing by zero is not allowed at second try
+The finally block is always executed
+Exception Number + 5
+*/
