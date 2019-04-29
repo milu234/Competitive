@@ -37,4 +37,32 @@ class Exception{
 	}
 }
 
+Built in Exceptions
+
+ArithmeticException	
+ArrayIndexOutOfBoundException
+ClassNotFoundException
+IOException
+InterruptedException
+NoSuchFieldException
+NoSuchMethodException
+NumberFormatException
+RuntmeException
+StringIndexOutOfBoundException
+
+
 */
+
+public class Exceptionhandling{
+	public static void main(String args[]){
+		String str = null;
+		try {
+			int a  = 30;
+			int b = 0;
+			System.out.println(a/b);
+		}
+		catch (ArithmeticException e){
+			System.out.println("Number is not divsble by 0");
+		}
+	}
+}
