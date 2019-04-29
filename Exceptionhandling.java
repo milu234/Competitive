@@ -50,7 +50,48 @@ NumberFormatException
 RuntmeException
 StringIndexOutOfBoundException
 
+Methods of Exception
 
+***************************************************************************************
+try
+-Used to specify a block where we should place exception code.
+-Synatx:
+		try{
+			//Code that throws exception
+		}catch(ExcdptioClassName e){
+	
+		}
+********************************************************************************************
+
+
+*******************************************************************************************
+catch
+- Use to handle the exception
+- Syntax:
+		try{
+	//Code that is prtected
+		} catch(Excetion e){
+	//catch block
+		}
+***********************************************************************************************
+
+
+
+**************************************************************************************************
+finally
+- This code is always executed irrespective of the exception is handled or not
+-Syntax:
+		try{
+	//the broken code
+		}
+		catch(Exception e){
+	//the handled code
+		}
+		finally{
+	//Will execute irrespective of the exception
+		}
+		
+**************************************************************************************************
 */
 
 public class Exceptionhandling{
@@ -63,6 +104,54 @@ public class Exceptionhandling{
 		}
 		catch (ArithmeticException e){
 			System.out.println("Number is not divsble by 0");
+		}
+
+		try {
+			int num = Integer.parseInt("Milan");
+			System.out.println(num);
+		}
+		catch(NumberFormatException e){
+			System.out.println("There is some format issue");
+		}
+
+		try{
+			int a[] = new int[5];
+			a[7] = 9;
+
+
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("The array is out of bounds");
+
+		}
+
+		try{
+			try{
+				int a = 1;
+				int b = 0;
+				int c = a/b;
+
+				System.out.println(c);
+
+			}catch(ArithmeticException e){
+				System.out.println("Dividing by zero is not allowed at first try" );
+			}
+
+			try{
+				int a = 1;
+				int b = 0;
+				int c = a/b;
+
+				System.out.println(c);
+			}catch(ArithmeticException e){
+					System.out.println("Dividing by zero is not allowed at second try" );	
+			}
+		}catch(Exception e){
+			System.out.println("Both the errors  handled");
+		}
+
+		finally{
+			System.out.println("The finally block is always executed");
 		}
 	}
 }
