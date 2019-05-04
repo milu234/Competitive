@@ -24,18 +24,33 @@ function convertToWord(letter){
 
 
 function win(userChoice, computerChoice){
+	const userChoice_div = document.getElementById(userChoice);
 	userScore++;
 	userScore_span.innerHTML = userScore;
 	computerScore_span.innerHTML = computerScore;
 	result_p.innerHTML = convertToWord(userChoice) + " beats " + convertToWord(computerChoice) + " . You win!!!!!";
+	userChoice_div.classList.add('green-glow');
+	setTimeout(function() { userChoice_div.classList.remove('green-glow')}, 1000);
 } 
 
-function draw(){
+function draw(userChoice, computerChoice){
+	const userChoice_div = document.getElementById(userChoice);
 	
+	userScore_span.innerHTML = userScore;
+	computerScore_span.innerHTML = computerScore;
+	result_p.innerHTML = convertToWord(userChoice) + " beats " + convertToWord(computerChoice) + " . Its Draw !!!!!";
+	userChoice_div.classList.add('gray-glow');
+	setTimeout(function() { userChoice_div.classList.remove('gray-glow')}, 1000);
 }
 
-function lose(){
-	
+function lose(userChoice, computerChoice){
+	const userChoice_div = document.getElementById(userChoice);
+	computerScore++;
+	userScore_span.innerHTML = userScore;
+	computerScore_span.innerHTML = computerScore;
+	result_p.innerHTML = convertToWord(computerChoice) + " beats " + convertToWord(userChoice) + " . You lose!!!!!";
+	userChoice_div.classList.add('red-glow');
+	setTimeout(function() { userChoice_div.classList.remove('red-glow')}, 1000);
 }
 
 // console.log(getComputerChoice());
@@ -54,13 +69,13 @@ function game(userChoice){
 		case "ps":
 		case "sr":
 			// console.log("USER LOSES");
-			lose(userChoice + computerChoice);
+			lose(userChoice , computerChoice);
 			break;
 		case "rr":
 		case "pp":
 		case "ss":
 			// console.log("Its a draw");
-			draw(userChoice + computerChoice);
+			draw(userChoice , computerChoice);
 			break;
 
 	}
