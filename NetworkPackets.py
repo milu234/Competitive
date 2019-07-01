@@ -1,45 +1,65 @@
-# Python3 program to construct binary 
-# tree from given array in level 
-# order fashion Tree Node 
+#include <stdio.h>
 
-# Helper function that allocates a 
-#new node 
-class newNode: 
-	def __init__(self, data): 
-		self.data = data 
-		self.left = self.right = None
+struct node {
+    long int data;
+    struct node *left;
+    struct node *right;
+};
 
-# Function to insert nodes in level order 
-def insertLevelOrder(arr, root, i, n): 
-	
-	# Base case for recursion 
-	if i < n: 
-		temp = newNode(arr[i]) 
-		root = temp 
 
-		# insert left child 
-		root.left = insertLevelOrder(arr, root.left, 
-									2 * i + 1, n) 
+struct node* insert(long int, struct node*, long int[], long int);
+void preordertraversal(struct node*, long int);
+long int x = 0; //no of overflow packets
+// void preordertraversal(struct node*);
+// struct node *root = NULL;
+struct node *temp,*ptr;
+int main() {
+    long int n;
+    long int m,i;
+    
+    scanf("%ld", &n);
+    scanf("%ld", &m);
+    long int a[m];
+    for(i = 0; i < m; i++) {
+        scanf("%ld",&a[i]);
+    }
+    // printf("%ld \n",n);
+    struct node *root = insert(0, root, a, m);
+    preordertraversal(root, n);
+    printf("%ld\n", x);
+}
 
-		# insert right child 
-		root.right = insertLevelOrder(arr, root.right, 
-									2 * i + 2, n) 
-	return root 
-
-# Function to print tree nodes in 
-# InOrder fashion 
-def inOrder(root): 
-	if root != None: 
-		inOrder(root.left) 
-		print(root.data,end=" ") 
-		inOrder(root.right) 
-
-# Driver Code 
-if __name__ == '__main__': 
-	arr = [100, 50 , 30 ,20] 
-	n = len(arr) 
-	root = None
-	root = insertLevelOrder(arr, root, 0, n) 
-	inOrder(root) 
-	
-# This code is contributed by PranchalK 
+struct node* insert(long int index, struct node *root, long int a[], long int m){
+        if(index < m){
+            temp=(struct node*)malloc(sizeof(struct node));
+            temp->data = a[index];
+            root = temp;
+            // printf("%ld ", temp->data);
+            root->left = insert(2*index + 1, root->left, a, m);
+            root->right = insert(2*index + 2, root->right, a, m);
+        }
+        return root;
+        
+    }
+void preordertraversal(struct node *p, long int n)
+{
+    // printf("n = %ld \n", n);
+    if(p==NULL) {
+        x = x+n;
+        // printf("x = %ld \n",x);
+        return;
+    }
+    else
+    {
+        // printf("%d\t",p->data);
+        long int rem = n - p->data;
+        if(rem <= 0)
+            return;
+        // printf("%ld \n", rem);
+        if(rem%2 != 0)
+            preordertraversal(p->left, rem/2 + 1);
+        else
+            preordertraversal(p->left, rem/2);
+        preordertraversal(p->right, rem/2);
+    }
+ 
